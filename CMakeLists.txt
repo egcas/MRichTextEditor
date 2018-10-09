@@ -8,6 +8,10 @@ set(CMAKE_AUTOMOC ON)
 # to always look for includes there:
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# Widgets finds its own dependencies.
+find_package(Qt5 COMPONENTS Widgets Gui Core)
+
+include_directories(${CMAKE_BINARY_DIR}/include/richtextedit)
 
 qt5_wrap_ui(MRICHTEXTEDIT_UIS
             src/mrichtextedit.ui
@@ -26,19 +30,12 @@ target_link_libraries(mrichtextedit Qt5::Widgets)
 
 #for in-tree build (publish API headers in binary dir)
 add_custom_target(mrichtextedit_header
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/include/mrichtextedit
-        COMMAND ${CMAKE_COMMAND} -E copy mtextedit.h ${CMAKE_BINARY_DIR}/include/mrichtextedit
-        COMMAND ${CMAKE_COMMAND} -E copy mrichtextedit.h ${CMAKE_BINARY_DIR}/include/mrichtextedit
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/include/richtextedit
+        COMMAND ${CMAKE_COMMAND} -E copy src/include/mtextedit.h ${CMAKE_BINARY_DIR}/include/richtextedit
+        COMMAND ${CMAKE_COMMAND} -E copy src/include/mrichtextedit.h ${CMAKE_BINARY_DIR}/include/richtextedit
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMENT "copy the mrichtextedit library headers to the include directory" VERBATIM)
 add_dependencies(mrichtextedit mrichtextedit_header)
-
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-        install (TARGETS mrichtextedit ARCHIVE DESTINATION lib LIBRARY DESTINATION lib)
-        install (FILES mtextedit.h  mrichtextedit.h DESTINATION include/mrichtextedit )
-else()
-        install (TARGETS mrichtextedit RUNTIME DESTINATION bin )
-endif()
 
 
 #add_definitions(-DMML_TEST)
