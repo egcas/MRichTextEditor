@@ -11,6 +11,12 @@ find_package(Qt5 COMPONENTS Widgets Gui Core)
 
 include_directories(${CMAKE_BINARY_DIR}/include/richtextedit)
 
+#this is for showing up abstract interfaces and other sources in the IDE
+add_custom_target(mrichtextedit_other_srcs ALL SOURCES
+        include/mrichtextedit.h
+        include/mtextedit.h
+)
+
 qt5_wrap_ui(MRICHTEXTEDIT_UIS
             mrichtextedit.ui
 )

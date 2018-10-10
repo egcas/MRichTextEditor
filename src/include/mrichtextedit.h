@@ -25,28 +25,47 @@
 #define _MRICHTEXTEDIT_H_
 
 #include <QPointer>
-#include "ui_mrichtextedit.h"
+#include <QScopedPointer>
+#include <QtCore>
+#include <QtGui>
+#include <QtCore/QVariant>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
+
+
+namespace Ui {
+        class MRichTextEdit;
+}
 
 /**
  * @Brief A simple rich-text editor
  */
-class MRichTextEdit : public QWidget, protected Ui::MRichTextEdit {
+class MRichTextEdit : public QWidget{
     Q_OBJECT
   public:
     MRichTextEdit(QWidget *parent = 0);
 
-    QString toPlainText() const { return f_textedit->toPlainText(); }
+    QString toPlainText() const;
     QString toHtml() const;
-    QTextDocument *document() { return f_textedit->document(); }
-    QTextCursor    textCursor() const { return f_textedit->textCursor(); }
-    void           setTextCursor(const QTextCursor& cursor) { f_textedit->setTextCursor(cursor); }
+    QTextDocument *document();
+    QTextCursor    textCursor() const;
+    void           setTextCursor(const QTextCursor& cursor);
 
   public slots:
     void setText(const QString &text);
 
   protected slots:
-    void setPlainText(const QString &text) { f_textedit->setPlainText(text); }
-    void setHtml(const QString &text)      { f_textedit->setHtml(text); }
+    void setPlainText(const QString &text);
+    void setHtml(const QString &text);
     void textRemoveFormat();
     void textRemoveAllFormat();
     void textBold();
@@ -91,6 +110,7 @@ class MRichTextEdit : public QWidget, protected Ui::MRichTextEdit {
                           ParagraphMonospace };
 
     QPointer<QTextList> m_lastBlockList;
+    QScopedPointer<Ui::MRichTextEdit> m_ui;
 };
 
 #endif
