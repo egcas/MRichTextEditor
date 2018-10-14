@@ -49,14 +49,15 @@ namespace Ui {
 /**
  * @Brief A simple rich-text editor
  */
-class MRichTextEdit : public QWidget{
+class MRichTextEdit : public QWidget {
     Q_OBJECT
   public:
     MRichTextEdit(QWidget *parent = 0);
+    virtual ~MRichTextEdit();
 
-    QString toPlainText() const;
     QString toHtml() const;
     QTextDocument *document();
+    QString toPlainText() const;
     QTextCursor    textCursor() const;
     void           setTextCursor(const QTextCursor& cursor);
 

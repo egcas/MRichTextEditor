@@ -5,6 +5,9 @@ set(CMAKE_AUTOMOC ON)
 # As moc files are generated in the binary dir, tell CMake
 # to always look for includes there:
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set_property(TARGET egcas PROPERTY CXX_STANDARD 11)
+set_property(TARGET egcas PROPERTY CXX_STANDARD_REQUIRED ON)
+
 
 # Widgets finds its own dependencies.
 find_package(Qt5 COMPONENTS Widgets Gui Core)
@@ -21,16 +24,22 @@ qt5_wrap_ui(MRICHTEXTEDIT_UIS
             mrichtextedit.ui
 )
 
-add_library(mrichtextedit STATIC  
+qt5_wrap_cpp(MRICHTEXTEDIT_MOC
+            include/mrichtextedit.h
+            include/mtextedit.h
+)
+
+add_library(mrichtextedit STATIC
         mrichtextedit.cpp 
         mtextedit.cpp 
         ${MRICHTEXTEDIT_UIS}
+        ${MRICHTEXTEDIT_MOC}
 )
 
 # Widgets finds its own dependencies.
 find_package(Qt5 COMPONENTS Widgets)
 
-target_link_libraries(mrichtextedit Qt5::Widgets)
+target_link_libraries(mrichtextedit Qt5::Gui Qt5::Core Qt5::Widgets)
 
 #for in-tree build (publish API headers in binary dir)
 add_custom_target(mrichtextedit_header

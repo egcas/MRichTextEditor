@@ -41,7 +41,8 @@
 #include <QDialog>
 
 
-MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent), m_ui(new Ui::MRichTextEdit) {
+MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent), m_ui(new Ui::MRichTextEdit)
+{
     m_ui->setupUi(this);
     m_lastBlockList = 0;
     m_ui->f_textedit->setTabStopWidth(40);
@@ -192,6 +193,9 @@ MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent), m_ui(new Ui::MR
     connect(m_ui->f_image, SIGNAL(clicked()), this, SLOT(insertImage()));
 }
 
+MRichTextEdit::~MRichTextEdit()
+{
+}
 
 void MRichTextEdit::textSource() {
     QDialog *dialog = new QDialog(this);
