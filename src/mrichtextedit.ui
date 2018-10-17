@@ -329,7 +329,7 @@
          <string>A³</string>
         </property>
         <property name="icon">
-         <iconset resource="mrichedit_icons/icons.qrc">
+         <iconset resource="res/icons.qrc">
           <normaloff>:/icons/subscript.png</normaloff>:/icons/subscript.png</iconset>
         </property>
        </widget>
@@ -340,7 +340,7 @@
          <string>Av</string>
         </property>
         <property name="icon">
-         <iconset resource="mrichedit_icons/icons.qrc">
+         <iconset resource="res/icons.qrc">
           <normaloff>:/icons/superscript.png</normaloff>:/icons/superscript.png</iconset>
         </property>
        </widget>
@@ -363,6 +363,10 @@
         <property name="text">
          <string>Bullet list</string>
         </property>
+        <property name="icon">
+         <iconset resource="res/icons.qrc">
+          <normaloff>:/icons/bullet_list.png</normaloff>:/icons/bullet_list.png</iconset>
+        </property>
         <property name="iconSize">
          <size>
           <width>16</width>
@@ -384,6 +388,10 @@
         </property>
         <property name="text">
          <string>Ordered list</string>
+        </property>
+        <property name="icon">
+         <iconset resource="res/icons.qrc">
+          <normaloff>:/icons/ordered_list.png</normaloff>:/icons/ordered_list.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -470,13 +478,7 @@
          <string>Text foreground color</string>
         </property>
         <property name="text">
-         <string>T</string>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>16</width>
-          <height>16</height>
-         </size>
+         <string notr="true">T</string>
         </property>
        </widget>
       </item>
@@ -619,7 +621,7 @@
   <tabstop>f_menu</tabstop>
  </tabstops>
  <resources>
-  <include location="mrichedit_icons/icons.qrc"/>
+  <include location="res/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

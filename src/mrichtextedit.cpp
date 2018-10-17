@@ -41,7 +41,7 @@
 #include <QDialog>
 
 
-MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent), m_ui(new Ui::MRichTextEdit)
+MRichTextEdit::MRichTextEdit(QWidget *parent, bool showInsertImage) : QWidget(parent), m_ui(new Ui::MRichTextEdit)
 {
     Q_INIT_RESOURCE(icons);
     m_ui->setupUi(this);
@@ -165,7 +165,6 @@ MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent), m_ui(new Ui::MR
     connect(m_ui->f_indent_dec, SIGNAL(clicked()), this, SLOT(decreaseIndentation()));
 
     // font size
-
     QFontDatabase db;
     foreach(int size, db.standardSizes())
         m_ui->f_fontsize->addItem(QString::number(size));
@@ -174,24 +173,26 @@ MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent), m_ui(new Ui::MR
             this, SLOT(textSize(QString)));
     m_ui->f_fontsize->setCurrentIndex(m_ui->f_fontsize->findText(QString::number(QApplication::font()
                                                                    .pointSize())));
+    // font
+    connect(m_ui->f_fontComboBox, SIGNAL(currentFontChanged(QFont)), this, SLOT(setFont(QFont)));
 
     // text foreground color
-
     QPixmap pix(16, 16);
-    pix.fill(QApplication::palette().foreground().color());
-    m_ui->f_fgcolor->setIcon(pix);
+    pix.fill(m_ui->f_textedit->textColor());
+    m_ui->f_fgcolor->setIcon(pix);    
 
     connect(m_ui->f_fgcolor, SIGNAL(clicked()), this, SLOT(textFgColor()));
 
     // text background color
-
-    pix.fill(QApplication::palette().background().color());
+    pix.fill(QColor(Qt::white));
     m_ui->f_bgcolor->setIcon(pix);
 
     connect(m_ui->f_bgcolor, SIGNAL(clicked()), this, SLOT(textBgColor()));
 
     // images
     connect(m_ui->f_image, SIGNAL(clicked()), this, SLOT(insertImage()));
+    if (!showInsertImage)
+            m_ui->f_image->setVisible(false);
 }
 
 MRichTextEdit::~MRichTextEdit()
@@ -289,6 +290,13 @@ void MRichTextEdit::textSize(const QString &p) {
         fmt.setFontPointSize(pointSize);
         mergeFormatOnWordOrSelection(fmt);
     }
+}
+
+void MRichTextEdit::setFont(const QFont &font)
+{
+        QTextCharFormat fmt;
+        fmt.setFont(font);
+        mergeFormatOnWordOrSelection(fmt);
 }
 
 void MRichTextEdit::textLink(bool checked) {
@@ -469,6 +477,7 @@ void MRichTextEdit::slotCursorPositionChanged() {
 }
 
 void MRichTextEdit::fontChanged(const QFont &f) {
+    m_ui->f_fontComboBox->setCurrentFont(f);
     m_ui->f_fontsize->setCurrentIndex(m_ui->f_fontsize->findText(QString::number(f.pointSize())));
     m_ui->f_bold->setChecked(f.bold());
     m_ui->f_italic->setChecked(f.italic());

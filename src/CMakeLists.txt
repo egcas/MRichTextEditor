@@ -29,7 +29,7 @@ qt5_wrap_cpp(MRICHTEXTEDIT_MOC
             include/mtextedit.h
 )
 
-qt5_add_resources(MRICHTEXT_RCCS mrichedit_icons/icons.qrc)
+qt5_add_resources(MRICHTEXT_RCCS res/icons.qrc)
 
 add_library(mrichtextedit STATIC
         mrichtextedit.cpp 

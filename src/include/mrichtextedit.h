@@ -28,6 +28,7 @@
 #include <QScopedPointer>
 #include <QtCore>
 #include <QtGui>
+#include <QFont>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -52,7 +53,7 @@ namespace Ui {
 class MRichTextEdit : public QWidget {
     Q_OBJECT
   public:
-    MRichTextEdit(QWidget *parent = 0);
+    MRichTextEdit(QWidget *parent = 0, bool showInsertImage = true);
     virtual ~MRichTextEdit();
 
     QString toHtml() const;
@@ -74,6 +75,7 @@ class MRichTextEdit : public QWidget {
     void textStrikeout();
     void textItalic();
     void textSize(const QString &p);
+    void setFont(const QFont &font);
     void textLink(bool checked);
     void textStyle(int index);
     void textFgColor();
