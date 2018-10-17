@@ -43,6 +43,7 @@
 
 MRichTextEdit::MRichTextEdit(QWidget *parent) : QWidget(parent), m_ui(new Ui::MRichTextEdit)
 {
+    Q_INIT_RESOURCE(icons);
     m_ui->setupUi(this);
     m_lastBlockList = 0;
     m_ui->f_textedit->setTabStopWidth(40);
