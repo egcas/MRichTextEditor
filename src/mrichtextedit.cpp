@@ -148,6 +148,11 @@ MRichTextEdit::MRichTextEdit(QWidget *parent, bool showInsertImage) : QWidget(pa
         m_ui->f_menu->setMenu(menu);
         m_ui->f_menu->setPopupMode(QToolButton::InstantPopup);
 
+
+        // bold, italic & underline
+        connect(m_ui->f_high, SIGNAL(clicked()), this, SLOT(textSuperscript()));
+        connect(m_ui->f_deep, SIGNAL(clicked()), this, SLOT(textSubscript()));
+
         // lists
 
         m_ui->f_list_bullet->setShortcut(Qt::CTRL + Qt::Key_Minus);
@@ -259,6 +264,17 @@ void MRichTextEdit::textBold() {
         mergeFormatOnWordOrSelection(fmt);
 }
 
+void MRichTextEdit::textSuperscript() {
+        QTextCharFormat fmt;
+        fmt.setVerticalAlignment(m_ui->f_high->isChecked() ? QTextCharFormat::AlignSuperScript : QTextCharFormat::AlignNormal);
+        mergeFormatOnWordOrSelection(fmt);
+}
+
+void MRichTextEdit::textSubscript() {
+        QTextCharFormat fmt;
+        fmt.setVerticalAlignment(m_ui->f_deep->isChecked() ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal);
+        mergeFormatOnWordOrSelection(fmt);
+}
 
 void MRichTextEdit::focusInEvent(QFocusEvent *) {
         m_ui->f_textedit->setFocus(Qt::TabFocusReason);
@@ -480,6 +496,15 @@ void MRichTextEdit::fontChanged(const QFont &f) {
         m_ui->f_fontComboBox->setCurrentFont(f);
         m_ui->f_fontsize->setCurrentIndex(m_ui->f_fontsize->findText(QString::number(f.pointSize())));
         m_ui->f_bold->setChecked(f.bold());
+        QTextCharFormat::VerticalAlignment alignment = m_ui->f_textedit->textCursor().charFormat().verticalAlignment();
+        if (alignment == QTextCharFormat::AlignSuperScript)
+                m_ui->f_high->setChecked(true);
+        else
+                m_ui->f_high->setChecked(false);
+        if (alignment == QTextCharFormat::AlignSubScript)
+                m_ui->f_deep->setChecked(true);
+        else
+                m_ui->f_deep->setChecked(false);
         m_ui->f_italic->setChecked(f.italic());
         m_ui->f_underline->setChecked(f.underline());
         m_ui->f_strikeout->setChecked(f.strikeOut());

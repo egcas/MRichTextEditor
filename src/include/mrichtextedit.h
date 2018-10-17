@@ -71,6 +71,8 @@ class MRichTextEdit : public QWidget {
     void textRemoveFormat();
     void textRemoveAllFormat();
     void textBold();
+    void textSuperscript();
+    void textSubscript();
     void textUnderline();
     void textStrikeout();
     void textItalic();

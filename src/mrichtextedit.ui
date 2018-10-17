@@ -332,6 +332,9 @@
          <iconset resource="res/icons.qrc">
           <normaloff>:/icons/subscript.png</normaloff>:/icons/subscript.png</iconset>
         </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -342,6 +345,9 @@
         <property name="icon">
          <iconset resource="res/icons.qrc">
           <normaloff>:/icons/superscript.png</normaloff>:/icons/superscript.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
