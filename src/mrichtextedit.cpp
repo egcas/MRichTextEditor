@@ -267,13 +267,21 @@ void MRichTextEdit::textBold() {
 void MRichTextEdit::textSuperscript() {
         QTextCharFormat fmt;
         fmt.setVerticalAlignment(m_ui->f_high->isChecked() ? QTextCharFormat::AlignSuperScript : QTextCharFormat::AlignNormal);
-        mergeFormatOnWordOrSelection(fmt);
+
+        QTextCursor cursor = m_ui->f_textedit->textCursor();
+        cursor.setCharFormat(fmt);
+        m_ui->f_textedit->setCurrentCharFormat(fmt);
+        m_ui->f_textedit->setFocus(Qt::TabFocusReason);
 }
 
 void MRichTextEdit::textSubscript() {
         QTextCharFormat fmt;
         fmt.setVerticalAlignment(m_ui->f_deep->isChecked() ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal);
-        mergeFormatOnWordOrSelection(fmt);
+
+        QTextCursor cursor = m_ui->f_textedit->textCursor();
+        cursor.setCharFormat(fmt);
+        m_ui->f_textedit->setCurrentCharFormat(fmt);
+        m_ui->f_textedit->setFocus(Qt::TabFocusReason);
 }
 
 void MRichTextEdit::focusInEvent(QFocusEvent *) {
@@ -490,12 +498,6 @@ void MRichTextEdit::slotCursorPositionChanged() {
                 m_ui->f_list_bullet->setChecked(false);
                 m_ui->f_list_ordered->setChecked(false);
         }
-}
-
-void MRichTextEdit::fontChanged(const QFont &f) {
-        m_ui->f_fontComboBox->setCurrentFont(f);
-        m_ui->f_fontsize->setCurrentIndex(m_ui->f_fontsize->findText(QString::number(f.pointSize())));
-        m_ui->f_bold->setChecked(f.bold());
         QTextCharFormat::VerticalAlignment alignment = m_ui->f_textedit->textCursor().charFormat().verticalAlignment();
         if (alignment == QTextCharFormat::AlignSuperScript)
                 m_ui->f_high->setChecked(true);
@@ -505,6 +507,12 @@ void MRichTextEdit::fontChanged(const QFont &f) {
                 m_ui->f_deep->setChecked(true);
         else
                 m_ui->f_deep->setChecked(false);
+}
+
+void MRichTextEdit::fontChanged(const QFont &f) {
+        m_ui->f_fontComboBox->setCurrentFont(f);
+        m_ui->f_fontsize->setCurrentIndex(m_ui->f_fontsize->findText(QString::number(f.pointSize())));
+        m_ui->f_bold->setChecked(f.bold());
         m_ui->f_italic->setChecked(f.italic());
         m_ui->f_underline->setChecked(f.underline());
         m_ui->f_strikeout->setChecked(f.strikeOut());
