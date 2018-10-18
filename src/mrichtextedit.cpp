@@ -41,7 +41,7 @@
 #include <QDialog>
 
 
-MRichTextEdit::MRichTextEdit(QWidget *parent, bool showInsertImage) : QWidget(parent), m_ui(new Ui::MRichTextEdit)
+MRichTextEdit::MRichTextEdit(QWidget *parent, bool showInsertImage, bool removeFormattingVisible) : QWidget(parent), m_ui(new Ui::MRichTextEdit)
 {
         Q_INIT_RESOURCE(icons);
         m_ui->setupUi(this);
@@ -127,6 +127,7 @@ MRichTextEdit::MRichTextEdit(QWidget *parent, bool showInsertImage) : QWidget(pa
         connect(m_ui->f_underline, SIGNAL(clicked()), this, SLOT(textUnderline()));
         connect(m_ui->f_strikeout, SIGNAL(clicked()), this, SLOT(textStrikeout()));
 
+        // remove formatting
         QAction *removeFormat = new QAction(tr("Remove character formatting"), this);
         removeFormat->setShortcut(QKeySequence("CTRL+M"));
         connect(removeFormat, SIGNAL(triggered()), this, SLOT(textRemoveFormat()));
@@ -147,7 +148,8 @@ MRichTextEdit::MRichTextEdit(QWidget *parent, bool showInsertImage) : QWidget(pa
         menu->addAction(textsource);
         m_ui->f_menu->setMenu(menu);
         m_ui->f_menu->setPopupMode(QToolButton::InstantPopup);
-
+        if (!removeFormattingVisible)
+                m_ui->f_menu->setVisible(false);
 
         // bold, italic & underline
         connect(m_ui->f_high, SIGNAL(clicked()), this, SLOT(textSuperscript()));

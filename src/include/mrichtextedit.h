@@ -53,7 +53,7 @@ namespace Ui {
 class MRichTextEdit : public QWidget {
     Q_OBJECT
   public:
-    MRichTextEdit(QWidget *parent = 0, bool showInsertImage = true);
+    MRichTextEdit(QWidget *parent = 0, bool showInsertImage = true, bool removeFormatting = false);
     virtual ~MRichTextEdit();
 
     QString toHtml() const;
