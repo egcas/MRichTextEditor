@@ -1,0 +1,8 @@
+This file lists where the icons originally come from:
+============================================================================================
+file                                    origin             License
+--------------------------------------------------------------------------------------------
+superscript.svg                         jm
+subscript.svg                           jm
+ordered_list.svg                        jm
+bullet_list.svg                         jm

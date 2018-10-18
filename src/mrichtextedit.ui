@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>819</width>
+    <width>1055</width>
     <height>312</height>
    </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
   </property>
   <property name="windowTitle">
    <string notr="true"/>
@@ -83,8 +86,7 @@
         </property>
         <property name="icon">
          <iconset theme="edit-undo">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -110,8 +112,7 @@
         </property>
         <property name="icon">
          <iconset theme="edit-redo">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -134,8 +135,7 @@
         </property>
         <property name="icon">
          <iconset theme="edit-cut">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -158,8 +158,7 @@
         </property>
         <property name="icon">
          <iconset theme="edit-copy">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -182,8 +181,7 @@
         </property>
         <property name="icon">
          <iconset theme="edit-paste">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -213,8 +211,7 @@
         </property>
         <property name="icon">
          <iconset theme="applications-internet">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -247,8 +244,7 @@
         </property>
         <property name="icon">
          <iconset theme="format-text-bold">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -274,8 +270,7 @@
         </property>
         <property name="icon">
          <iconset theme="format-text-italic">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -301,8 +296,7 @@
         </property>
         <property name="icon">
          <iconset theme="format-text-underline">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -319,6 +313,38 @@
        <widget class="QToolButton" name="f_strikeout">
         <property name="text">
          <string>Strike Out</string>
+        </property>
+        <property name="icon">
+         <iconset theme="format-text-strikethrough">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="f_deep">
+        <property name="text">
+         <string>A³</string>
+        </property>
+        <property name="icon">
+         <iconset resource="res/icons.qrc">
+          <normaloff>:/icons/subscript.png</normaloff>:/icons/subscript.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="f_high">
+        <property name="text">
+         <string>Av</string>
+        </property>
+        <property name="icon">
+         <iconset resource="res/icons.qrc">
+          <normaloff>:/icons/superscript.png</normaloff>:/icons/superscript.png</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -343,6 +369,10 @@
         <property name="text">
          <string>Bullet list</string>
         </property>
+        <property name="icon">
+         <iconset resource="res/icons.qrc">
+          <normaloff>:/icons/bullet_list.png</normaloff>:/icons/bullet_list.png</iconset>
+        </property>
         <property name="iconSize">
          <size>
           <width>16</width>
@@ -364,6 +394,10 @@
         </property>
         <property name="text">
          <string>Ordered list</string>
+        </property>
+        <property name="icon">
+         <iconset resource="res/icons.qrc">
+          <normaloff>:/icons/ordered_list.png</normaloff>:/icons/ordered_list.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -389,8 +423,7 @@
         </property>
         <property name="icon">
          <iconset theme="format-indent-less">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -413,8 +446,7 @@
         </property>
         <property name="icon">
          <iconset theme="format-indent-more">
-          <normaloff/>
-         </iconset>
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -452,13 +484,7 @@
          <string>Text foreground color</string>
         </property>
         <property name="text">
-         <string>.</string>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>16</width>
-          <height>16</height>
-         </size>
+         <string notr="true">T</string>
         </property>
        </widget>
       </item>
@@ -483,7 +509,7 @@
          <string>Text background color</string>
         </property>
         <property name="text">
-         <string>.</string>
+         <string>B</string>
         </property>
         <property name="iconSize">
          <size>
@@ -492,6 +518,9 @@
          </size>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QFontComboBox" name="f_fontComboBox"/>
       </item>
       <item>
        <widget class="QComboBox" name="f_fontsize">
@@ -567,6 +596,9 @@
      <zorder>line_6</zorder>
      <zorder>f_menu</zorder>
      <zorder>f_fgcolor</zorder>
+     <zorder>f_deep</zorder>
+     <zorder>f_high</zorder>
+     <zorder>f_fontComboBox</zorder>
     </widget>
    </item>
    <item>
@@ -594,6 +626,8 @@
   <tabstop>f_image</tabstop>
   <tabstop>f_menu</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="res/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
