@@ -439,6 +439,7 @@ void MRichTextEdit::listBullet(bool checked) {
                 m_ui->f_list_ordered->setChecked(false);
         }
         list(checked, QTextListFormat::ListDisc);
+        m_ui->f_textedit->setFocus(Qt::TabFocusReason);
 }
 
 void MRichTextEdit::listOrdered(bool checked) {
@@ -446,6 +447,7 @@ void MRichTextEdit::listOrdered(bool checked) {
                 m_ui->f_list_bullet->setChecked(false);
         }
         list(checked, QTextListFormat::ListDecimal);
+        m_ui->f_textedit->setFocus(Qt::TabFocusReason);
 }
 
 void MRichTextEdit::list(bool checked, QTextListFormat::Style style) {
