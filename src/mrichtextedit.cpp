@@ -617,6 +617,19 @@ void MRichTextEdit::setTextCursor(const QTextCursor& cursor)
         m_ui->f_textedit->setTextCursor(cursor);
 }
 
+void MRichTextEdit::setBasicFont(const QFont& font)
+{
+        m_ui->f_fontComboBox->setCurrentFont(font);
+}
+
+void MRichTextEdit::setHeadingPointSizes(int fontsize_h1, int fontsize_h2, int fontsize_h3, int fontsize_h4)
+{
+        m_fontsize_h1 = fontsize_h1;
+        m_fontsize_h2 = fontsize_h2;
+        m_fontsize_h3 = fontsize_h3;
+        m_fontsize_h4 = fontsize_h4;
+}
+
 void MRichTextEdit::setPlainText(const QString &text)
 {
         m_ui->f_textedit->setPlainText(text);

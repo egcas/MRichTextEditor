@@ -61,6 +61,19 @@ class MRichTextEdit : public QWidget {
     QString toPlainText() const;
     QTextCursor    textCursor() const;
     void           setTextCursor(const QTextCursor& cursor);
+    /**
+     * @brief setBasicFont set the basic font (font of normal text)
+     * @param font the font to set
+     */
+    void setBasicFont(const QFont &font);
+    /**
+     * @brief setHeadingPointSizes set the point sizes for the headings
+     * @param fontsize_h1 point size of heading H1
+     * @param fontsize_h2 point size of heading H2
+     * @param fontsize_h3 point size of heading H3
+     * @param m_fontsize_h4 point size of heading H4
+     */
+    void setHeadingPointSizes(int fontsize_h1, int fontsize_h2, int fontsize_h3, int fontsize_h4);
 
   public slots:
     void setText(const QString &text);
