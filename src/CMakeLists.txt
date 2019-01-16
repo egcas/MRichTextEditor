@@ -12,7 +12,7 @@ set_property(TARGET egcas PROPERTY CXX_STANDARD_REQUIRED ON)
 # Widgets finds its own dependencies.
 find_package(Qt5 COMPONENTS Widgets Gui Core)
 
-include_directories(${CMAKE_BINARY_DIR}/include/richtextedit)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #this is for showing up abstract interfaces and other sources in the IDE
 add_custom_target(mrichtextedit_other_srcs ALL SOURCES
@@ -45,12 +45,12 @@ find_package(Qt5 COMPONENTS Widgets)
 target_link_libraries(mrichtextedit Qt5::Gui Qt5::Core Qt5::Widgets)
 
 #for in-tree build (publish API headers in binary dir)
-add_custom_target(mrichtextedit_header
+add_custom_command(TARGET mrichtextedit
         COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/include/richtextedit
         COMMAND ${CMAKE_COMMAND} -E copy include/mtextedit.h ${CMAKE_BINARY_DIR}/include/richtextedit
         COMMAND ${CMAKE_COMMAND} -E copy include/mrichtextedit.h ${CMAKE_BINARY_DIR}/include/richtextedit
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMENT "copy the mrichtextedit library headers to the include directory" VERBATIM)
-add_dependencies(mrichtextedit mrichtextedit_header)
+
 
   
